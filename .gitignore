@@ -1,6 +1,7 @@
 # Claude Code local
-.claude/settings.local.json
-.claude/cache/
+# .claude/ holds local symlinks to agents/, skills/, commands/ for in-repo testing.
+# Source of truth lives at the top-level directories; .claude/ is a deployment shim.
+.claude/
 
 # OS
 .DS_Store

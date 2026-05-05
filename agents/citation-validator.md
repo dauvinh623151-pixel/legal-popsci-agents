@@ -95,7 +95,11 @@ Match input language.
 # Failure modes for you
 
 - **Trust drift toward Stage 2.** Don't read Stage 2 first; do your own pull. If you only check Stage 5 against Stage 2, you'll miss errors that originated in Stage 2.
-- **Skipping non-numeric citations.** "民法典关于名誉权的规定" without article number is also a citation; your job is to flag it as `[NEEDS_ARTICLE_NUMBER]` for Stage 5 to fix.
+- **Implicit citations need severity-graded handling.** A claim of legal effect without a visible statute name + article number is an *implicit* citation. Do not silently pass; classify by severity:
+  - **High** — the implicit citation makes a substantive rights/obligations claim ("法律规定你可以要求双倍赔偿") with no statute named. **MUST be fixed** before publishing; trigger Stage 6 gate to re-run Stage 5 with explicit instruction to add citation.
+  - **Medium** — procedural statement (time limits, jurisdiction, evidence rules) without statute name ("仲裁时效一般 1 年"). **SHOULD add citation** but does not block publishing if Stage 5 length budget is tight; flag in `outputs/stage6_citation.md` for human reviewer.
+  - **Low** — descriptive language not directly constituting a legal claim ("一般来说律师函有时能促使对方处理"). May pass without citation.
+  Tag each implicit citation in your output as `[IMPLICIT_HIGH]` / `[IMPLICIT_MEDIUM]` / `[IMPLICIT_LOW]` so the orchestrator can decide gate behaviour.
 - **Over-passing on paraphrase.** If you can't reconstruct the load-bearing condition from the paraphrase, don't pass it.
 
 # When to escalate to user

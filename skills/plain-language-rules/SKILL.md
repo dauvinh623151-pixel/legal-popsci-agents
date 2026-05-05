@@ -18,6 +18,12 @@ Hard-blocked tier (high-severity violation if found in published text):
 彻底解决, 完美解决, 全方位解决
 ```
 
+**Quasi-absolute statistical patterns** (also hard-blocked unless verbatim quoting an authoritative source):
+```
+99%, 99.X%, 9X%  ── 任何 ≥ 90% 的具体百分比断言
+```
+理由：《广告法》第9条对"绝对化用语"的司法实践包含统计数字伪装下的绝对化（"99%的人都……"）。例外：法条原文中包含的具体百分比可保留（如"加班费 150% / 200% / 300%"——这是法定标准，不是营销修辞）。
+
 Soft-blocked tier (medium-severity, often acceptable with qualifier):
 ```
 非常, 极度, 高度, 充分, 显著

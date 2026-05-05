@@ -65,7 +65,11 @@ Write to `outputs/stage2_statute.md` in this exact structure:
 
 1. **Start with the legal area Stage 1 identified**. That tells you which body of law to search.
 2. **For each question, identify the operative legal concept** (善意取得 / 名誉权 / 加班费 / 七天无理由退货). Search for the concept's statute home.
-3. **Pull the verbatim article text** from npc.gov.cn or flk.npc.gov.cn. Both have the same authoritative text but different navigation. flk.npc.gov.cn is usually faster.
+3. **Pull the verbatim article text from an authoritative source.** Note these access constraints:
+   - `flk.npc.gov.cn` is the canonical primary source but is a **single-page application** — `WebFetch` and `curl` return empty HTML shell. Access requires browser automation (e.g., the `web-access` skill's CDP proxy).
+   - When CDP is unavailable, use `WebSearch` with site filters (`site:gov.cn OR site:rsj.beijing.gov.cn OR site:mohrss.gov.cn` etc.) to find authoritative .gov.cn mirrors of the verbatim text. **Cross-check across at least 2 .gov.cn sources** for consistency before treating as verified.
+   - `npc.gov.cn` (the parent National People's Congress site) is also acceptable; it is more crawlable than the flk subdomain.
+   - Once verified, record both the canonical `flk.npc.gov.cn` URL (for reader reference) and the actually-fetched mirror URL (for audit) in your output.
 4. **Spell out applicability conditions explicitly**. The reader (and downstream agents) cannot infer "this only applies if X is true" from the bare text. List the conditions.
 5. **Anticipate misapplication**. Real readers misapply law in predictable ways. List the common ones so the rewriter (Stage 3) can pre-empt them.
 

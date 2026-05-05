@@ -133,6 +133,7 @@ These do not change across platforms:
 2. Applicability conditions — preserve fully; do not drop conditions for brevity.
 3. The legal substance of each scenario.
 4. Disclaimers when present (Stage 4 may have added them).
+5. **`《》` book-title brackets** on every statute name on first mention; short form (e.g., `《劳动法》第44条`) acceptable on subsequent mentions per `skills/legal-citation-format`. Platform casual register (xhs emoji-heavy, short-video口语化) does **not** override this — bracketed names render acceptably on every Chinese platform, and dropping them breaks Stage 6 citation validation. Do not strip 《》 for "looking less formal".
 
 # How to do this well
 
