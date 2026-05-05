@@ -1,0 +1,16 @@
+# Claude Code local
+.claude/settings.local.json
+.claude/cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Run outputs (keep checked-in examples but ignore ad-hoc runs)
+runs/
+*.tmp

@@ -1,0 +1,42 @@
+%% Legal PopSci Pipeline — full workflow with gates
+%% Render at https://mermaid.live or in any Markdown viewer that supports Mermaid
+
+flowchart TD
+    Start([User: /popsci topic --platform xhs]) --> Orch[popsci-orchestrator]
+
+    Orch --> S1[Stage 1: topic-researcher]
+    S1 --> |3-5 reader-perspective questions| S2[Stage 2: statute-verifier]
+    S2 --> |verified statute table| S3[Stage 3: plain-language-rewriter]
+    S3 --> |plain draft| S4[Stage 4: compliance-reviewer]
+
+    S4 --> Gate4{High-confidence<br/>violation?}
+    Gate4 -->|yes, max 1 retry| S3
+    Gate4 -->|no| S5[Stage 5: style-adapter]
+
+    S5 --> |platform draft| S6[Stage 6: citation-validator]
+
+    S6 --> Gate6{Citation<br/>fail?}
+    Gate6 -->|yes, max 1 full re-run| S2
+    Gate6 -->|no| Final([final_xhs.md])
+
+    %% Out-of-scope escalation paths
+    S1 -.->|out-of-scope| Esc([Escalate to user])
+    S2 -.->|verification failed| Esc
+
+    %% Skill dependencies
+    skillCit[/skill: legal-citation-format/]
+    skillPlain[/skill: plain-language-rules/]
+    skillCit -.-> S2
+    skillCit -.-> S6
+    skillPlain -.-> S3
+    skillPlain -.-> S4
+
+    classDef stage fill:#e8f4fd,stroke:#1e6091,stroke-width:2px
+    classDef gate fill:#fff3cd,stroke:#856404,stroke-width:2px
+    classDef terminal fill:#d4edda,stroke:#155724,stroke-width:2px
+    classDef skill fill:#f8d7da,stroke:#721c24,stroke-width:1px,stroke-dasharray:5
+
+    class S1,S2,S3,S4,S5,S6,Orch stage
+    class Gate4,Gate6 gate
+    class Start,Final,Esc terminal
+    class skillCit,skillPlain skill
