@@ -35,7 +35,7 @@ This document walks through a single end-to-end pipeline run, showing what each 
 
 **Does**:
 1. For each of the 4 questions, identifies the operative statute
-2. Pulls verbatim text from `flk.npc.gov.cn`
+2. Pulls verbatim text from authoritative .gov.cn sources (`flk.npc.gov.cn` is canonical but is a SPA — fall back to WebSearch + `.gov.cn` mirror cross-check when CDP is unavailable)
 3. Spells out applicability conditions and common exceptions
 4. Tags each citation with effective-date marker
 
@@ -134,7 +134,7 @@ The Stage 4 gate evaluates: any high-confidence finding triggers a re-run of Sta
 
 **Does**:
 1. Extracts all `《...》第...条` citations from the styled draft
-2. Independently re-pulls each cited article from `flk.npc.gov.cn`
+2. Independently re-pulls each cited article from authoritative .gov.cn sources (canonical `flk.npc.gov.cn` URL recorded for reader reference; actually-fetched mirror URL recorded for audit when SPA fallback applies)
 3. Compares the styled draft's claim against the source verbatim
 
 **Produces** (`outputs/stage6_citation.md`, abridged):
